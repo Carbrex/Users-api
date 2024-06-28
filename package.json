@@ -7,14 +7,17 @@
     "dev": "nodemon server.js",
     "start": "node server.js",
     "seed-db": "node seeder.js",
+    "test": "NODE_ENV=test jest",
     "format": "prettier --write ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "jest": "^29.7.0",
     "nodemon": "^3.1.4",
-    "prettier": "^3.3.2"
+    "prettier": "^3.3.2",
+    "supertest": "^7.0.0"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -26,5 +29,8 @@
     "morgan": "^1.10.0",
     "swagger-ui-express": "^5.0.1",
     "yamljs": "^0.3.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }

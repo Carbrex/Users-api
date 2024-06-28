@@ -1,9 +1,9 @@
 const dotenv = require("dotenv");
 const express = require("express");
 require("express-async-errors");
-const swaggerUi = require('swagger-ui-express');
-const YAML = require('yamljs');
-const swaggerDocument = YAML.load('./docs/api-docs.yaml');
+const swaggerUi = require("swagger-ui-express");
+const YAML = require("yamljs");
+const swaggerDocument = YAML.load("./docs/api-docs.yaml");
 const cors = require("cors");
 const morgan = require("morgan");
 dotenv.config();
@@ -30,12 +30,12 @@ app.use(
       }
       return callback(null, true);
     },
-  }),
+  })
 );
 
 app.use(express.json());
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.get("/", (req, res) => {
   res.send("Server is running!");
 });
@@ -49,10 +49,15 @@ const start = async () => {
     await connectDB(process.env.MONGO_URI);
     app.listen(port, () => {
       console.log(`Server is listening on port ${port}...`);
+      console.log(`API docs available at http://localhost:${port}/api-docs`);
     });
   } catch (error) {
     console.log(error);
   }
 };
 
-start();
+if (process.env.NODE_ENV !== "test") {
+  start();
+}
+
+module.exports = app;

@@ -5,19 +5,19 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide a first name"],
     trim: true,
-    maxlength: [20, "First name cannot be more than 20 characters"],
+    maxlength: [40, "First name cannot be more than 40 characters"],
   },
   lastName: {
     type: String,
     required: [true, "Please provide a last name"],
     trim: true,
-    maxlength: [20, "Last name cannot be more than 20 characters"],
+    maxlength: [40, "Last name cannot be more than 40 characters"],
   },
   companyName: {
     type: String,
     required: [true, "Please provide a company name"],
     trim: true,
-    maxlength: [20, "Company name cannot be more than 20 characters"],
+    maxlength: [40, "Company name cannot be more than 40 characters"],
   },
   age: {
     type: Number,
@@ -27,13 +27,13 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide a city"],
     trim: true,
-    maxlength: [20, "City name cannot be more than 20 characters"],
+    maxlength: [40, "City name cannot be more than 40 characters"],
   },
   state: {
     type: String,
     required: [true, "Please provide a state"],
     trim: true,
-    maxlength: [20, "State name cannot be more than 20 characters"],
+    maxlength: [40, "State name cannot be more than 40 characters"],
   },
   zip: {
     type: String,

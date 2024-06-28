@@ -49,7 +49,7 @@ const createUser = async (req, res) => {
     zip,
     email,
     web,
-  } = req.body;
+  } = req.body;// destructuring the request body
   if (
     !firstName ||
     !lastName ||
@@ -91,7 +91,7 @@ const updateUser = async (req, res) => {
   }); // new is to return the updated user and runValidators is to run the validators in the schema
 
   if (!user) {
-    throw new NotFoundError(`No user with id : ${userId}`);
+    throw new NotFoundError(`No user with id : ${id}`);
   }
 
   res.status(StatusCodes.OK).json({ user, msg: "User successfully updated" });
@@ -104,7 +104,7 @@ const deleteUser = async (req, res) => {
   const user = await User.findByIdAndDelete(id);
 
   if (!user) {
-    throw new NotFoundError(`No user with id : ${userId}`);
+    throw new NotFoundError(`No user with id : ${id}`);
   }
 
   res.status(StatusCodes.OK).json({ user, msg: "User successfully deleted" });
