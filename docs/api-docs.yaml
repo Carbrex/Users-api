@@ -1,0 +1,149 @@
+openapi: 3.0.0
+info:
+  title: Users API
+  description: API to manage users
+  version: "1.0"
+servers:
+  - url: http://localhost:8080/
+paths:
+  /users:
+    get:
+      summary: List all users
+      parameters:
+        - name: sort
+          in: query
+          schema:
+            type: string
+          description: Sort order, default is firstName
+        - name: search
+          in: query
+          schema:
+            type: string
+          description: Search query for firstName or lastName
+        - name: page
+          in: query
+          schema:
+            type: integer
+          description: Page number
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          description: Limit number of records returned
+      responses:
+        '200':
+          description: A JSON array of users
+          content:
+            application/json:
+              schema: 
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items: 
+                      $ref: '#/components/schemas/User'
+                  nbHits:
+                    type: integer
+                  msg:
+                    type: string
+    post:
+      summary: Create a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUser'
+      responses:
+        '201':
+          description: User created
+        '400':
+          description: Invalid input
+  /users/{id}:
+    get:
+      summary: Get a user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: User ID
+      responses:
+        '200':
+          description: User found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+    patch:
+      summary: Update a user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: User ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: User updated
+        '400':
+          description: Invalid input
+        '404':
+          description: User not found
+    delete:
+      summary: Delete a user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: User ID
+      responses:
+        '204':
+          description: User deleted
+        '404':
+          description: User not found
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - firstName
+        - lastName
+        - companyName
+        - age
+        - city
+        - state
+        - zip
+        - email
+        - web
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        companyName:
+          type: string
+        age:
+          type: integer
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        email:
+          type: string
+        web:
+          type: string
