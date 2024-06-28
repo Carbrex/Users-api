@@ -18,3 +18,12 @@ npm run seed-db
 npm start
 ```
 6. Then, navigate to http://localhost:8080/api-docs to see the API documentation.
+
+## Alternative Setup using Docker
+You need to have docker and docker compose installed on your machine to use this method.
+1. Clone the repository: `git clone https://github.com/Carbrex/Users-api.git`
+2. Start the docker containers:
+```
+docker compose up
+```
+3. Then, navigate to http://localhost:8080/api-docs to see the API documentation.

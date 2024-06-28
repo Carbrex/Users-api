@@ -8,6 +8,9 @@ const User = require("./models/User");
 const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);
+    // delete all users
+    await User.deleteMany();
+    // add users from the json file
     for (const user of userData) {
       await User.create(user);
     }

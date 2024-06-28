@@ -1,0 +1,21 @@
+services:
+  mongo:
+    image: mongo:5.0.27-focal
+    container_name: mongo
+    command: --quiet
+    networks:
+      - users-api
+  users-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: users-api
+    ports:
+      - "8080:8080"
+    networks:
+      - users-api
+    depends_on:
+      - mongo
+networks:
+  users-api:
+    driver: bridge
